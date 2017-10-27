@@ -1,6 +1,7 @@
 ﻿using Services.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -18,14 +19,14 @@ namespace EmpTrack.ViewModels.Auction
         INavigation _Navigation;
         public string lot_Num;
         public string buyer_ID;
-        List<LotGroupEntity> vehicle;
+        ObservableCollection<LotGroupEntity> vehicle;
         public bool isbusy;
         public Vehicle vehiclee;
 
         public AuctionViewModelForUser2(INavigation _navigation)
         {
             _Navigation = _navigation;
-            vehicle = new List<LotGroupEntity>();
+            vehicle = new ObservableCollection<LotGroupEntity>();
         }
 
         public string Lot_Num
@@ -77,7 +78,7 @@ namespace EmpTrack.ViewModels.Auction
             }
         }
 
-        public List<LotGroupEntity> Vehicle
+        public ObservableCollection<LotGroupEntity> Vehicle
         {
             get
             {
@@ -117,8 +118,7 @@ namespace EmpTrack.ViewModels.Auction
                     }
                     else if(!String.IsNullOrEmpty(Buyer_ID))
                     {
-                        IsBusy = true;
-                        FetchLotList();
+                        _Navigation.PushAsync(new Views.LocationDetail.LocationDetailPage(Buyer_ID));
                     }
                 });
             }
@@ -157,64 +157,11 @@ namespace EmpTrack.ViewModels.Auction
         }
         #endregion
 
+        
 
-        #region Fetch lot detail list against buyer ID
-        private async void FetchLotList()
+        private void onPropertyChanged(string data)
         {
-            Vehicle.Clear();
-            var cardetailservicesssss = new Services.NetworkServices.CarDetails.CarDetailsService();
-            LotList lotResponse = await cardetailservicesssss.FetchLotListByBuyerID(Buyer_ID);
-            // if api response is not null
-            if (lotResponse != null )
-            {
-                if (lotResponse.Status)
-                {
-                    var locations = lotResponse.vehicle.GroupBy(x => x.Location).Select(a => new { location = a.Key, count = a.Count() });
-
-                    foreach (var location in locations)
-                    {
-                        LotGroupEntity groupEntity = new LotGroupEntity();
-                        groupEntity.Location = location.location;
-                        groupEntity.Count = location.count;
-                        List<Vehicle> vehicles = new List<Services.Models.Vehicle>();
-
-                        foreach (Vehicle vehicle in lotResponse.vehicle)
-                        {
-                            if (vehicle.Location.Equals(location.location))
-                            {
-                                vehicles.Add(vehicle);
-                            }
-                        }
-                        groupEntity.vehicle = vehicles;
-                        Vehicle.Add(groupEntity);
-                    }
-
-                    IsBusy = false;
-                    _Navigation.PushAsync(new Views.LocationDetail.LocationDetailPage(Vehicle));
-                }
-                // if api response is null
-                else
-                {
-
-                    // show error
-                    await Application.Current.MainPage.DisplayAlert("Error", "Somethin went wrong, check internet settings", "OK");
-                    Debug.WriteLine("Error Message : " + lotResponse.ErrorMessage);
-                }
-            }
-            else
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Cancel");
-                IsBusy = false;
-            }
-        }
-        #endregion
-
-
-
-
-        private void onPropertyChanged(string v)
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs(v));
+            PropertyChanged(this, new PropertyChangedEventArgs(data));
         }
     }
 }

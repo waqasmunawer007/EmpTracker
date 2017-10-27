@@ -12,13 +12,7 @@ namespace Services.Models
     public class Vehicle
     {
 
-        public string DeselectedStateIcon { get; set; }
-
-        public bool IsSelected { get; set; }
-        
-        public string SelectedStateIcon { get; set; }
-
-        public Action<Vehicle> OnClickListener { get; set; }
+        public bool check { get; set; }
 
         public string id { get; set; }
         public string LotId { get; set; }

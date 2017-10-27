@@ -3,18 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EmpTrack.Views.LocationDetail.LocationDetailPage"
              xmlns:local="clr-namespace:EmpTrack.Customizations"
+             xmlns:m16="clr-namespace:Messier16.Forms.Controls;assembly=Messier16.Forms.Controls.Checkbox"
              Title="Location Details">
-    
-    <!--<ContentPage.Content>
-        <StackLayout VerticalOptions="Start" HorizontalOptions="Start">
-            <StackLayout>
-                <local:CollapsibleListView x:Name="collapsibleListView" VerticalOptions="FillAndExpand"/>
-                <StackLayout>
-                    <StackLayout.Children>
-                        
-                    </StackLayout.Children>
-                </StackLayout>
+
+    <ContentPage.Content>
+
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+            <!--Activity indicator-->
+            <ActivityIndicator VerticalOptions="Start" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
+
+            <StackLayout Padding="0,20,0,0">
+                
+                <!--listview-->
+                <ListView  x:Name="GroupedView" IsVisible="{Binding Visibility}"
+                GroupDisplayBinding="{Binding Title}"
+                RowHeight="50"
+                IsGroupingEnabled="true">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout  Padding="20,15,0,0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <m16:Checkbox VerticalOptions="Start" Checked="{Binding check}" HorizontalOptions="Start" x:Name="{Binding LotId}"/>
+                                        <Label Text="{Binding LotId}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="5,5,5,5" BackgroundColor="#E2F5F9">
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <m16:Checkbox VerticalOptions="Start" HorizontalOptions="Start" x:Name="{Binding TitleWithItemCount}" CheckedChanged="ParentCheckedChaned" Checked="{Binding _Checked}" />
+                                            <Label Text="{Binding TitleWithItemCount}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Button Image="{Binding StateIcon}"
+                                  VerticalOptions="Start"
+                                  HorizontalOptions="EndAndExpand"
+                                  BackgroundColor="Transparent"
+                                  BorderColor="Transparent"
+                                  BorderWidth="0"
+                                  Clicked="HeaderTapped" 
+                                  CommandParameter="{Binding .}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
+                </ListView>
             </StackLayout>
+
         </StackLayout>
-    </ContentPage.Content>-->
+        
+    </ContentPage.Content>
 </ContentPage>

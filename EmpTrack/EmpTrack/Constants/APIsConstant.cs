@@ -9,8 +9,8 @@ namespace EmpTrack.Constants
     public class APIsConstant
     {
         //public static String BaseURL = "http://apidocapp.azurewebsites.net/";
-        public static String BaseURL = "http://integratedmobile.azurewebsites.net/";
-        //public static String BaseURL = "http://a194eabd.ngrok.io/api/";
+        //public static String BaseURL = "http://integratedmobile.azurewebsites.net/";
+        public static String BaseURL = " http://c6a04f08.ngrok.io/api/";
 
 
         #region  web apis 

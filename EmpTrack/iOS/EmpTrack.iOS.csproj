@@ -77,6 +77,12 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Messier16.Forms.Controls.Checkbox, Version=1.0.5951.15362, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Messier16.Forms.Checkbox.0.2.1-alpha\lib\Xamarin.iOS10\Messier16.Forms.Controls.Checkbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Messier16.Forms.iOS.Controls.Checkbox, Version=1.0.5951.15367, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Messier16.Forms.Checkbox.0.2.1-alpha\lib\Xamarin.iOS10\Messier16.Forms.iOS.Controls.Checkbox.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Identity.Client, Version=1.1.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Identity.Client.1.1.0-preview\lib\xamarinios10\Microsoft.Identity.Client.dll</HintPath>
     </Reference>
@@ -122,9 +128,7 @@
       <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
@@ -137,10 +141,13 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderers\ListViewRenderer.cs" />
     <Compile Include="Renderers\LoginPageRenderer.cs" />
-    <Compile Include="Renderers\NativeListCell.cs" />
-    <Compile Include="Renderers\NativeListView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Collapse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Expand.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

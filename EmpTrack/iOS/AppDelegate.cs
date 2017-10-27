@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using Microsoft.Identity.Client;
 using EmpTrack.Models;
+using Messier16.Forms.iOS.Controls;
 
 namespace EmpTrack.iOS
 {
@@ -27,6 +28,8 @@ namespace EmpTrack.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            CheckboxRenderer.Init();
 
             LoadApplication(new App());
 

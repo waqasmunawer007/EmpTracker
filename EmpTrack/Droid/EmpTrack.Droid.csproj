@@ -38,6 +38,12 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Messier16.Forms.Controls.Checkbox, Version=1.0.5951.15362, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Messier16.Forms.Checkbox.0.2.1-alpha\lib\MonoAndroid10\Messier16.Forms.Controls.Checkbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Messier16.Forms.Droid.Controls.Checkbox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Messier16.Forms.Checkbox.0.2.1-alpha\lib\MonoAndroid10\Messier16.Forms.Droid.Controls.Checkbox.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Identity.Client, Version=1.1.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Identity.Client.1.1.0-preview\lib\monoandroid70\Microsoft.Identity.Client.dll</HintPath>
@@ -109,8 +115,6 @@
   <ItemGroup>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Renderers\DataAdopterListViewRenderer.cs" />
-    <Compile Include="Renderers\ListViewRenderer.cs" />
     <Compile Include="Renderers\LoginPageRenderer.cs" />
     <Compile Include="Renderers\RoundedBorderedLoginButton.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -123,12 +127,6 @@
     </None>
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
-    <AndroidResource Include="Resources\layout\ListViewRenderer.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\ChildCell.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
   </ItemGroup>
@@ -175,7 +173,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Auction.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Collapse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Expand.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
