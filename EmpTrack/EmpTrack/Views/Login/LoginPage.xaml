@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmpTrack.Views.Login.LoginPage"
+             Title="Login"
+             xmlns:local="clr-namespace:EmpTrack.Customizations">
+
+    <ContentPage.Content>
+        <StackLayout Orientation ="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+            <StackLayout>
+
+                <!--Customer-->
+
+                <local:LoginButton Text="Customer" VerticalOptions="Center" Command="{Binding CustomerCommand}" 
+            HorizontalOptions="CenterAndExpand" Style="{StaticResource ButtonStyle}" 
+             WidthRequest="120"/>
+
+
+                <!--Domain 1-->
+
+                <local:LoginButton Text="Dealer" VerticalOptions="Center" Command="{Binding DealerCommand}" 
+            HorizontalOptions="CenterAndExpand" Style="{StaticResource ButtonStyle}" 
+             WidthRequest="120"/>
+
+                <!--Doamin 2-->
+
+                <local:LoginButton Text="Service Provider" VerticalOptions="Center" Command="{Binding ServiceProviderCommand}"
+            HorizontalOptions="CenterAndExpand" Style="{StaticResource ButtonStyle}" 
+             WidthRequest="120"/>
+
+            </StackLayout>
+                       
+            
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

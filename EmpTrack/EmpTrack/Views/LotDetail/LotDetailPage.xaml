@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmpTrack.Views.LotDetail.LotDetailPage"
+             xmlns:local="clr-namespace:EmpTrack.Customizations"
+             Title="Lot Detail">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                <StackLayout Padding="10,15,10,15">
+
+                    <!--label for section 1-->
+                    <Label Text="Auction Details" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="{StaticResource HeadingFontSize}" TextColor="{ DynamicResource NormalTextColor }"/>
+
+                    <!--Horizontal line-->
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Gray"/>
+                    
+                    <!--Api response-->
+                    <StackLayout Padding="10,10,0,10">
+                        
+                        <!--response for make , model and year inline-->                        
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text="Make :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding Make}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+
+                            <Label Text="Model :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding Model}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+                            <Label Text="Year" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding Year}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+                        </StackLayout>
+
+                        <!--response for class and location inline-->
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text="Class :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding Class}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+
+                            <Label Text="Location :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding Location}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+                        </StackLayout>
+
+                        <!--response for trim-->
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text="Trim :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding Trim}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+                        </StackLayout>
+
+                        <!--response for description-->
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text="Description :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding Description}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    
+                    <!--label for section 2-->
+                    <Label Text="Section 2" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="{StaticResource HeadingFontSize}" TextColor="{ DynamicResource NormalTextColor }"/>
+                    
+                    <!--Horizontal line-->
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Gray" Margin="0,0,0,10"/>
+
+                    
+                    <!--Entries for first name and last name inline-->
+                    <StackLayout Orientation="Horizontal">
+
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="First Name"/>
+
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Last Name"/>
+
+                    </StackLayout>
+
+                    <!--Entry for destination address-->
+                    <Label Text="Destination Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City,Zip,State"/>
+
+                    <!--Shipment datetime-->
+                    <Label Text="Shipment Datetime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                    
+                    <StackLayout Orientation="Horizontal">
+
+                        <DatePicker VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                        <DatePicker VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+
+                    </StackLayout>
+                    
+                    <!--Button-->
+                    <local:LoginButton Text="Get Quote" VerticalOptions="Start" HorizontalOptions="EndAndExpand" TextColor="White" WidthRequest="110" Command="{Binding GetQuoteCommand}" Style="{StaticResource ButtonStyle}"/>
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

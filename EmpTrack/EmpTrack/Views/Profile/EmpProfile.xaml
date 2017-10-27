@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmpTrack.Views.Profile.EmpProfile"
+             Title="Employee Profile"
+             xmlns:local="clr-namespace:EmpTrack.Customizations">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical" Padding="10,10,10,0">
+                <StackLayout>
+                    <!--Profile Detail Section -->
+                    <Label Font="Bold" FontSize="{DynamicResource HeadingFontSize}" VerticalTextAlignment="Center" TextColor="{ DynamicResource NormalTextColor }" Text="Profile Details"/>
+                    <BoxView WidthRequest="1000" HeightRequest="1" BackgroundColor="Gray" />
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <!-- Supported Modes Picker-->
+                        <Label Text="Modes Supported" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+
+                        <!-- Worker Types Picker -->
+                        <Label Text="Worker Type" Margin="20,0,0,0"  VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <!-- Supported Modes Picker-->
+                        <Picker Title="Modes Supported"
+                        VerticalOptions="Start" HorizontalOptions="FillAndExpand"
+                        SelectedIndex="{Binding SelectedModeIndex}"
+                        ItemsSource="{Binding SupportedModes}"/>
+
+                        <!-- Worker Types Picker -->
+                        <Picker Title="Worker Type"
+                        VerticalOptions="Start" HorizontalOptions="FillAndExpand"
+                        SelectedIndex="{Binding SelectedWorkerTypeIndex}"
+                        ItemsSource="{Binding WorketTypes}"/>
+
+
+                    </StackLayout>
+
+
+                    <!-- Week Begin Picker-->
+                    <Label Text="Week Begin"   Margin="0,5,0,0" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}" HorizontalOptions="Start" TextColor="Black"/>
+                    <DatePicker
+                        VerticalOptions="Start" HorizontalOptions="FillAndExpand"  
+                                Date="{Binding WeekBeginDate}"  x:Name="WorkBeginDateTime">
+                        <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                    </DatePicker>
+
+
+                    <!-- Service Detail Section-->
+                    <Label Font="Bold"  Margin="0,15,0,0" FontSize="{DynamicResource HeadingFontSize}" VerticalTextAlignment="Center" TextColor="{ DynamicResource NormalTextColor }" Text="Service Details"/>
+                    <BoxView WidthRequest="1000" HeightRequest="1" BackgroundColor="Gray" />
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <!-- Working Time Spent -->
+                        <Label Text="Working Time Spent" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+
+                        <!-- Part Time Spent -->
+                        <Label Text="Part Time Hours Spent" Margin="20,0,0,0" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <!-- Working Time Spent -->
+                        <Entry Text="{Binding WorkingTimeSpent}" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}"  HorizontalOptions="FillAndExpand"/>
+
+                        <!-- Part Time Spent -->
+                        <Entry Text="{Binding PartTimeHourSpent}" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}"  HorizontalOptions="FillAndExpand"/>
+
+                    </StackLayout>
+
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <!-- Total Working time  -->
+                        <Label Text="Total Working Time" VerticalOptions="Start" HorizontalOptions="FillAndExpand" FontSize="{StaticResource NormalFontSize}" TextColor="Black"/>
+
+                        <!-- Remaining Hours -->
+                        <Label Text="Hours Remaining" Margin="-20,0,0,0" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+
+                    </StackLayout>
+
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <!-- Total Working time  -->
+                        <Entry Text="{Binding TotalWorkingTime}" IsEnabled="false" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}"  HorizontalOptions="FillAndExpand"/>
+
+                        <!-- Remaining Hours -->
+                        <Entry Text = "{Binding HourRemaining}" IsEnabled="false" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}"  HorizontalOptions="FillAndExpand"/>
+
+                    </StackLayout>
+
+
+
+                    <!-- Lunch Time Range-->
+                    <Label Text="Lunch Time" FontSize="{StaticResource NormalFontSize}" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Black"/>
+                    <StackLayout Orientation="Horizontal">
+                        <TimePicker Time ="{Binding LunchFrom}" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                        <TimePicker Time ="{Binding LunchTo}" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+
+                    <!-- Normal Working Time Range-->
+                    <Label Text="Normal Working Hours" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}" HorizontalOptions="Start" TextColor="Black"/>
+                    <StackLayout Orientation="Horizontal">
+                        <TimePicker Time ="{Binding NormalWorkingFrom}" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                        <TimePicker Time ="{Binding NormalWorkingTo}" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+
+                    <!-- Emergency break Time Range-->
+                    <Label Text="Any Emergency Break Hours" VerticalOptions="Start" HorizontalOptions="Start" FontSize="{StaticResource NormalFontSize}" TextColor="Black"/>
+                    <StackLayout Orientation="Horizontal">
+                        <TimePicker Time ="{Binding EmergencyBreakFrom}" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                        <TimePicker Time ="{Binding EmergencyBreakTo}" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+
+                    <!-- Planned Leave Date Range-->
+                    <Label Text="Planned Leave" VerticalOptions="Start" HorizontalOptions="Start"  FontSize="{StaticResource NormalFontSize}" TextColor="Black"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <DatePicker VerticalOptions="Start"  
+                            Date="{Binding PlannedLeaveFrom}" 
+                            HorizontalOptions="FillAndExpand" x:Name="LeaveFrom">
+                            <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                        </DatePicker>
+
+                        <DatePicker VerticalOptions="Start"  
+                             Date="{Binding PlannedLeaveTo}" 
+                             HorizontalOptions="FillAndExpand" x:Name="LeaveTo">
+                            <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                        </DatePicker>
+                    </StackLayout>
+
+                    <!-- Working on Weekend Switch condition -->
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Working On Weekends?" VerticalOptions="Start" HorizontalOptions="Start" FontSize="{StaticResource NormalFontSize}" TextColor="Black"/>
+                        <Switch IsToggled="{Binding IfWorkingOnWeekend}"  VerticalOptions="Start" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+
+                    <!-- Any Compliance Violation Switch condition -->
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Any Compliance Violation?" VerticalOptions="Start" HorizontalOptions="Start" FontSize="{StaticResource NormalFontSize}" TextColor="Black"/>
+                        <Switch IsToggled="{Binding IfComplianceViolation}"  VerticalOptions="Start" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+
+                    <Label Text="Worker Authorization" VerticalOptions="Start" HorizontalOptions="Start" FontSize="{StaticResource NormalFontSize}" TextColor="Black"/>
+                    <Entry Text="{Binding Authorization}" VerticalOptions="Start" FontSize="{StaticResource NormalFontSize}"  HorizontalOptions="FillAndExpand"/>
+
+                    <!-- Save button -->
+                    <ActivityIndicator IsVisible="{Binding IfBusy}" IsRunning="{Binding IfBusy}" HorizontalOptions="Center" WidthRequest="30" HeightRequest="30"/>
+                    <local:LoginButton  Command="{Binding SaveButtonCommand}" Text="Save" HeightRequest="40" VerticalOptions="Start" WidthRequest="100"
+                    Margin="0,10,0,10" HorizontalOptions="EndAndExpand" Style="{StaticResource ButtonStyle}" />
+
+                    <Picker Title="Manager Approval" Margin="0,0,0,20">
+                        <Picker.Items>
+                            <x:String>Approved</x:String>
+                            <x:String>Rejected</x:String>
+                            <x:String>Pending</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

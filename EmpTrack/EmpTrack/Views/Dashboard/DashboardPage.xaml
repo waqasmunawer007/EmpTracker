@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BarBackgroundColor="{StaticResource NavBarBackground}"
+             x:Class="EmpTrack.Views.Dashboard.DashboardPage"
+             Title="Dashboard"
+            xmlns:local="clr-namespace:EmpTrack.Views.Dashboard"
+            xmlns:local1="clr-namespace:EmpTrack.Views.Notifications">
+
+    <local:DashboardTagPage>
+    </local:DashboardTagPage>
+    <local:BidsTabPage>
+    </local:BidsTabPage>
+    <local1:NotificationsPage>
+    </local1:NotificationsPage>
+
+</TabbedPage>

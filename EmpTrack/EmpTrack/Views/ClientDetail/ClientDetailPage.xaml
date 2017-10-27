@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmpTrack.Views.ClientDetail.ClientDetailPage"
+             xmlns:local="clr-namespace:EmpTrack.Customizations"
+             Title="Client Detail">
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                <StackLayout Padding="10,15,10,15">
+
+                    <!--Label for section 1-->
+                    <Label Text="Client Details" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="{StaticResource HeadingFontSize}" TextColor="{StaticResource NormalTextColor}"/>
+
+                    <!--Horizontal line-->
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Gray"/>
+
+                    <!--Api response-->
+                    <StackLayout Margin="10,20,10,20">
+
+                        <!--response for first name and last name inline-->
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text="First Name :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding firstName}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+                            <Label Text="Last Name :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding lastName}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+                        </StackLayout>
+
+
+
+                        <!--response for age and sex inline-->
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text="Age :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding age}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+                            <Label Text="Sex :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                            <Label Text="{Binding sex}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <!--Label for section 2-->
+                    <Label Text="Section 2" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
+
+                    <!--Horizontal line-->
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Gray"/>
+
+
+                    <!--Entry for source address and city-->
+                    <Label Text="Source Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Source Address"/>
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
+
+                    <!--Entry for Zip and State-->
+                    <StackLayout Orientation="Horizontal">
+
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Zip"/>
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="State"/>
+
+                    </StackLayout>
+
+                    <!--Entry for destination address and city-->
+                    <Label Text="Source Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Destination Address"/>
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
+
+                    <!--Entry for Zip and State-->
+                    <StackLayout Orientation="Horizontal">
+
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Zip"/>
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="State"/>
+
+                    </StackLayout>
+
+                    <!--Pick datetime-->
+                    <Label Text="Shipment DateTime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                    <StackLayout Orientation="Horizontal">
+
+                        <DatePicker VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                        <DatePicker VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+
+                    </StackLayout>
+
+                    <!--Button-->
+                    <local:LoginButton Text="Get Quote" VerticalOptions="Start" HorizontalOptions="EndAndExpand" TextColor="White" WidthRequest="110" Command="{Binding GetQuoteCommand}" Style="{StaticResource ButtonStyle}"/>
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

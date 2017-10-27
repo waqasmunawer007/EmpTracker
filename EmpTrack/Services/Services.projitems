@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{4CE4D4E8-F3D4-48EF-A823-75A5EFEE9FF3}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Services</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BaseServerResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ClientDetails.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\EmpResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LotDetails.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LotGroupEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LotList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkServices\BaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkServices\CarDetails\CarDetailsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkServices\CarDetails\ICarDetailsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkServices\ClientDetails\ClientDetailsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkServices\ClientDetails\IClientDetailsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkServices\User\IUserService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkServices\User\UserService.cs" />
+  </ItemGroup>
+</Project>
