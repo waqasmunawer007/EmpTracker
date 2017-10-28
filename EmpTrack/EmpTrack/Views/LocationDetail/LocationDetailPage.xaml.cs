@@ -67,7 +67,7 @@ namespace EmpTrack.Views.LocationDetail
                     foreach (LotGroupEntity lotgroup in _allGroups)
                     {
                         LotGroupEntity newGroup = new LotGroupEntity(lotgroup.Location, lotgroup.Expanded);
-                        newGroup.ItemsCount = lotgroup.ItemsCount;
+                        newGroup.ItemsCount = lotgroup.vehicle.Count();
 
 
                         if (lotgroup.Expanded)
@@ -82,19 +82,19 @@ namespace EmpTrack.Views.LocationDetail
                                 if (lotgroup.Location == selectedItem.Location)
                                 {
                                     vehicle.check = false;
-                                    newGroup.vehicle.Add(vehicle);
+                                    newGroup.Add(vehicle);
                                 }
                                 else
                                 {
                                     if (vehicle.check == true)
                                     {
                                         vehicle.check = true;
-                                        newGroup.vehicle.Add(vehicle);
+                                        newGroup.Add(vehicle);
                                     }
                                     else
                                     {
                                         vehicle.check = false;
-                                        newGroup.vehicle.Add(vehicle);
+                                        newGroup.Add(vehicle);
                                     }
                                 }
                             }
@@ -123,7 +123,7 @@ namespace EmpTrack.Views.LocationDetail
                     foreach (LotGroupEntity lotgroup in _allGroups)
                     {
                         LotGroupEntity newGroup = new LotGroupEntity(lotgroup.Location,lotgroup.Expanded);
-                        newGroup.ItemsCount = lotgroup.ItemsCount;
+                        newGroup.ItemsCount = lotgroup.vehicle.Count();
 
 
                         if (lotgroup.Expanded)
@@ -138,19 +138,19 @@ namespace EmpTrack.Views.LocationDetail
                                 if (lotgroup.Location == selectedItem.Location)
                                 {
                                     vehicle.check = true;
-                                    newGroup.vehicle.Add(vehicle);
+                                    newGroup.Add(vehicle);
                                 }
                                 else
                                 {
                                     if (vehicle.check == true)
                                     {
                                         vehicle.check = true;
-                                        newGroup.vehicle.Add(vehicle);
+                                        newGroup.Add(vehicle);
                                     }
                                     else
                                     {
                                         vehicle.check = false;
-                                        newGroup.vehicle.Add(vehicle);
+                                        newGroup.Add(vehicle);
                                     }
                                 }
                             }
@@ -183,7 +183,7 @@ namespace EmpTrack.Views.LocationDetail
                     foreach (LotGroupEntity lotgroup in _allGroups)
                     {
                         LotGroupEntity newGroup = new LotGroupEntity(lotgroup.Location,lotgroup.Expanded);
-                        newGroup.ItemsCount = lotgroup.ItemsCount;
+                        newGroup.ItemsCount = lotgroup.vehicle.Count();
 
 
                         if (lotgroup.Expanded)
@@ -198,19 +198,19 @@ namespace EmpTrack.Views.LocationDetail
                                 if (lotgroup.Location == selectedItem.Location)
                                 {
                                     vehicle.check = false;
-                                    newGroup.vehicle.Add(vehicle);
+                                    newGroup.Add(vehicle);
                                 }
                                 else
                                 {
                                     if (vehicle.check == true)
                                     {
                                         vehicle.check = true;
-                                        newGroup.vehicle.Add(vehicle);
+                                        newGroup.Add(vehicle);
                                     }
                                     else
                                     {
                                         vehicle.check = false;
-                                        newGroup.vehicle.Add(vehicle);
+                                        newGroup.Add(vehicle);
                                     }
                                 }
                             }
@@ -237,7 +237,7 @@ namespace EmpTrack.Views.LocationDetail
                     foreach (LotGroupEntity lotgroup in _allGroups)
                     {
                         LotGroupEntity newGroup = new LotGroupEntity(lotgroup.Location,lotgroup.Expanded);
-                        newGroup.ItemsCount = lotgroup.ItemsCount;
+                        newGroup.ItemsCount = lotgroup.vehicle.Count();
 
                         if (lotgroup.Expanded)
                         {
@@ -251,19 +251,19 @@ namespace EmpTrack.Views.LocationDetail
                                 if (lotgroup.Location == selectedItem.Location)
                                 {
                                     vehicle.check = true;
-                                    newGroup.vehicle.Add(vehicle);
+                                    newGroup.Add(vehicle);
                                 }
                                 else
                                 {
                                     if (vehicle.check == true)
                                     {
                                         vehicle.check = true;
-                                        newGroup.vehicle.Add(vehicle);
+                                        newGroup.Add(vehicle);
                                     }
                                     else
                                     {
                                         vehicle.check = false;
-                                        newGroup.vehicle.Add(vehicle);
+                                        newGroup.Add(vehicle);
                                     }
                                 }
                             }
@@ -300,12 +300,12 @@ namespace EmpTrack.Views.LocationDetail
                 //Create new FoodGroups so we do not alter original list
                 LotGroupEntity newGroup = new LotGroupEntity(lotgroup.Location, lotgroup.Expanded);
                 //Add the count of food items for Lits Header Titles to use
-                newGroup.ItemsCount = lotgroup.ItemsCount;
+                newGroup.ItemsCount = lotgroup.vehicle.Count();
                 if (lotgroup.Expanded)
                 {
                     foreach (Vehicle vehicle in lotgroup.vehicle)
                     {
-                        newGroup.vehicle.Add(vehicle);
+                        newGroup.Add(vehicle);
                     }
                 }
 

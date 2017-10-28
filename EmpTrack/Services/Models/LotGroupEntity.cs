@@ -6,15 +6,18 @@ using System.Text;
 
 namespace Services.Models
 {
-    public class LotGroupEntity : INotifyPropertyChanged
+    public class LotGroupEntity : ObservableCollection<Vehicle> , INotifyPropertyChanged
     {
         private bool _expanded;
         private bool _checked;
-        private int itemscount;
-
-
+        
         public string Location { get; set; }
+
         public ObservableCollection<Vehicle> vehicle { get; set; }
+
+        public LotGroupEntity()
+        {
+        }
 
         public LotGroupEntity(string location , bool expanded = false)
         {
@@ -24,16 +27,18 @@ namespace Services.Models
 
         public bool Expanded
         {
-            get
-            {
-                return _expanded;
-            }
+            get { return _expanded; }
             set
             {
-                _expanded = value;
-                OnPropertyChanged("Expanded");
+                if (_expanded != value)
+                {
+                    _expanded = value;
+                    OnPropertyChanged("Expanded");
+                    OnPropertyChanged("StateIcon");
+                }
             }
         }
+
         public bool _Checked
         {
             get
@@ -46,19 +51,8 @@ namespace Services.Models
                 OnPropertyChanged("_Checked");
             }
         }
-
-        public int ItemsCount
-        {
-            get
-            {
-                return itemscount;
-            }
-            set
-            {
-                itemscount = value;
-                OnPropertyChanged("ItemsCount");
-            }
-        }
+        
+        public int ItemsCount { get; set; }
 
         public string StateIcon
         {

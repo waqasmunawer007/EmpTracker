@@ -85,7 +85,7 @@ namespace EmpTrack.ViewModels.LocationDetails
 
                     foreach (var location in locations)
                     {
-                        LotGroupEntity groupEntity = new LotGroupEntity(location.location);
+                        LotGroupEntity groupEntity = new LotGroupEntity();
                         groupEntity.Location = location.location;
                         ObservableCollection<Vehicle> vehicles = new ObservableCollection<Vehicle>();
 

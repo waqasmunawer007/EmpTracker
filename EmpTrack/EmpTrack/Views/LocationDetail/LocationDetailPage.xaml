@@ -11,13 +11,13 @@
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
             <!--Activity indicator-->
-            <ActivityIndicator VerticalOptions="Start" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
+            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
 
-            <StackLayout Padding="0,20,0,0">
+            <StackLayout>
                 
                 <!--listview-->
                 <ListView  x:Name="GroupedView" IsVisible="{Binding Visibility}"
-                GroupDisplayBinding="{Binding Title}"
+                GroupDisplayBinding="{Binding Location}"
                 RowHeight="50"
                 IsGroupingEnabled="true">
 
