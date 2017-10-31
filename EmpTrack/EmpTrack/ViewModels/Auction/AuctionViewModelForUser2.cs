@@ -1,4 +1,5 @@
-﻿using Services.Models;
+﻿using Plugin.Connectivity;
+using Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -127,22 +128,34 @@ namespace EmpTrack.ViewModels.Auction
                 {
                     if (String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID))
                     {
-                        MessageVisibility = true;
+                        App.Current.MainPage.DisplayAlert("", "You should enter atleast one value", "OK");
                     }
                     else if (!String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Buyer_ID))
                     {
-                        MessageVisibility = true;
+                        App.Current.MainPage.DisplayAlert("", "You should enter one value", "OK");
                     }
                     else if (!String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID))
                     {
-                        MessageVisibility = false;
-                        IsBusy = true;
-                        FetchCarDetailsByLotNum();
+                        if(CrossConnectivity.Current.IsConnected)
+                        {
+                            IsBusy = true;
+                            FetchCarDetailsByLotNum();
+                        }
+                        else
+                        {
+                            App.Current.MainPage.DisplayAlert("No Internet", "Please check your internet connection", "OK");
+                        }
                     }
                     else if (String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Buyer_ID))
                     {
-                        messagevisibility = false;
-                        _Navigation.PushAsync(new Views.LocationDetail.LocationDetailPage(Buyer_ID));
+                        if(CrossConnectivity.Current.IsConnected)
+                        {
+                            _Navigation.PushAsync(new Views.LocationDetail.LocationDetailPage(Buyer_ID));
+                        }
+                        else
+                        {
+                            App.Current.MainPage.DisplayAlert("No Internet", "Please check your internet connection", "OK");
+                        }
                     }
                     
                 });

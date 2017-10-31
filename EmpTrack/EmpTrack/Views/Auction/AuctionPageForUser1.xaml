@@ -19,9 +19,6 @@
                 <!--Entry for client ID-->
                 <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Client ID" Text="{Binding Client_ID}"/>
 
-                <!--Validation message-->
-                <Label Text="You can either enter one value" TextColor="Red" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" IsVisible="{Binding MessageVisibility}"/>
-
                 <!--Activityindicator-->
                 <ActivityIndicator VerticalOptions="Start" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Margin="0,10,0,10"/>
 

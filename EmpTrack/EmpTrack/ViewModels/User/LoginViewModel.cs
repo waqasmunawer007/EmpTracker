@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Diagnostics;
+using Plugin.Connectivity;
 
 namespace EmpTrack.ViewModels.User
 {
@@ -43,29 +44,37 @@ namespace EmpTrack.ViewModels.User
                 //});
                 return new Command(async () =>
                 {
-                    try
+                    if(CrossConnectivity.Current.IsConnected)
                     {
-                        Settings.DomainType = 1;
-                        if (!String.IsNullOrEmpty(Settings.Email))
+                        try
                         {
-                            Application.Current.MainPage = new Views.Menu.MainPage();
-                        }
-                        else if (String.IsNullOrEmpty(Settings.Email))
-                        {
-                            AuthenticationResult ar = await App.PCA1.AcquireTokenAsync(App.Scopes, App.UiParent);
-                            Settings.UserName = ar.User.Name;
-                            Settings.Email = ar.User.DisplayableId;
-                            foreach (var user in App.PCA1.Users)
+                            Settings.DomainType = 1;
+                            if (!String.IsNullOrEmpty(Settings.Email))
                             {
-                                App.PCA1.Remove(user);
+                                Application.Current.MainPage = new Views.Menu.MainPage();
                             }
-                            Application.Current.MainPage = new Views.Auction.AuctionPageForUser2();
+                            else if (String.IsNullOrEmpty(Settings.Email))
+                            {
+                                AuthenticationResult ar = await App.PCA1.AcquireTokenAsync(App.Scopes, App.UiParent);
+                                Settings.UserName = ar.User.Name;
+                                Settings.Email = ar.User.DisplayableId;
+                                foreach (var user in App.PCA1.Users)
+                                {
+                                    App.PCA1.Remove(user);
+                                }
+                                Application.Current.MainPage = new Views.Auction.AuctionPageForUser2();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine("Exception " + ex.Message);
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Debug.WriteLine("Exception " + ex.Message);
+                        await App.Current.MainPage.DisplayAlert("No Internet", "Please check your internet connection", "OK");
                     }
+                    
                 });
             }
         }
@@ -76,28 +85,35 @@ namespace EmpTrack.ViewModels.User
             {
                 return new Command(async () =>
                 {
-                    try
+                    if(CrossConnectivity.Current.IsConnected)
                     {
-						Settings.DomainType = 2;
-                        if (!String.IsNullOrEmpty(Settings.Email))
+                        try
                         {
-                            Application.Current.MainPage = new Views.Menu.MainPage();
-                        }
-                        else if (String.IsNullOrEmpty(Settings.Email))
-                        {
-                            AuthenticationResult ar = await App.PCA2.AcquireTokenAsync(App.Scopes, App.UiParent);
-							Settings.UserName = ar.User.Name;
-							Settings.Email = ar.User.DisplayableId;
-                            foreach (var user in App.PCA2.Users)
+                            Settings.DomainType = 2;
+                            if (!String.IsNullOrEmpty(Settings.Email))
                             {
-                                App.PCA2.Remove(user);
+                                Application.Current.MainPage = new Views.Menu.MainPage();
                             }
-                            Application.Current.MainPage = new Views.Menu.MainPage();
+                            else if (String.IsNullOrEmpty(Settings.Email))
+                            {
+                                AuthenticationResult ar = await App.PCA2.AcquireTokenAsync(App.Scopes, App.UiParent);
+                                Settings.UserName = ar.User.Name;
+                                Settings.Email = ar.User.DisplayableId;
+                                foreach (var user in App.PCA2.Users)
+                                {
+                                    App.PCA2.Remove(user);
+                                }
+                                Application.Current.MainPage = new Views.Menu.MainPage();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine("Exception " + ex.Message);
                         }
                     }
-                    catch(Exception ex)
+                    else
                     {
-                        Debug.WriteLine("Exception "+ex.Message);
+                        await App.Current.MainPage.DisplayAlert("No Internet", "Please check your internet connection", "OK");
                     }
                 });
             }
