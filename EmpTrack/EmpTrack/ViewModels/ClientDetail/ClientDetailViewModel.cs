@@ -17,13 +17,27 @@ namespace EmpTrack.ViewModels.ClientDetail
         public event PropertyChangedEventHandler PropertyChanged;
 
         INavigation _Navigation;
+        public Client clientdetail;
         
 
-        public ClientDetailViewModel(INavigation _navigation)
+        public ClientDetailViewModel(INavigation _navigation, Client _clientdetail)
         {
             _Navigation = _navigation;
+            clientdetail = _clientdetail;
         }
-        
+
+        public Client ClientDetail
+        {
+            get
+            {
+                return clientdetail;
+            }
+            set
+            {
+                clientdetail = value;
+                OnPropertyChanged("Clientt");
+            }
+        }
 
         public ICommand GetQuoteCommand
         {
@@ -31,10 +45,17 @@ namespace EmpTrack.ViewModels.ClientDetail
             {
                 return new Command(() =>
                 {
-                    _Navigation.PushAsync(new Views.Pricing.PricingPage());
+
                 });
             }
         }
-        
+
+
+        private void OnPropertyChanged(string data)
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(data));
+        }
+
+
     }
 }

@@ -18,8 +18,8 @@ namespace EmpTrack.Views.LotDetail
         public LotDetailPage(Vehicle vehicle)
         {
             InitializeComponent();
-            lotdetailViewModel = new LotDetailViewModel(Navigation);
-            BindingContext = vehicle;
+            lotdetailViewModel = new LotDetailViewModel(Navigation,vehicle);
+            BindingContext = lotdetailViewModel;
         }
 
         protected override void OnAppearing()

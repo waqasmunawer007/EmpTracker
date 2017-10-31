@@ -38,11 +38,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Constants\APIsConstant.cs" />
-    <Compile Include="Converter\HideAndShowButton.cs" />
-    <Compile Include="Converter\HideAndShowBuyerID.cs" />
-    <Compile Include="Converter\HideAndShowClientID.cs" />
-    <Compile Include="Converter\HideAndShowLotNo.cs" />
-    <Compile Include="Converter\ShowAndHideButtonForMultipleFields.cs" />
     <Compile Include="Customizations\CollapsibleListView.cs" />
     <Compile Include="Customizations\LoginButton.cs" />
     <Compile Include="Helpers\Settings.cs" />
@@ -56,6 +51,7 @@
     <Compile Include="ViewModels\ClientDetail\ClientDetailViewModel.cs" />
     <Compile Include="ViewModels\LocationDetails\LocationDetailsViewModel.cs" />
     <Compile Include="ViewModels\LotDetail\LotDetailViewModel.cs" />
+    <Compile Include="ViewModels\Pricing\PricingViewModel.cs" />
     <Compile Include="ViewModels\User\EmpProfileViewModel.cs" />
     <Compile Include="ViewModels\User\LoginViewModel.cs" />
     <Compile Include="Views\AboutUs\AboutUsPage.xaml.cs">
@@ -75,6 +71,9 @@
     </Compile>
     <Compile Include="Views\ClientDetail\ClientDetailPage.xaml.cs">
       <DependentUpon>ClientDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomLocation\CustomLocationPage.xaml.cs">
+      <DependentUpon>CustomLocationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dashboard\BidsTabPage.xaml.cs">
       <DependentUpon>BidsTabPage.xaml</DependentUpon>
@@ -403,9 +402,14 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Views\LocationDetail\LocationDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CustomLocation\CustomLocationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

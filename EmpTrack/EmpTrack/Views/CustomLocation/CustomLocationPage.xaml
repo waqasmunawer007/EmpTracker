@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmpTrack.Views.CustomLocation.CustomLocationPage"
+             xmlns:local="clr-namespace:EmpTrack.Customizations"
+             Title="Custom Location">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Padding="10,15,10,15">
+
+                <!--Entry for source address and city-->
+                <Label Text="Source Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Source Address"/>
+                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
+
+                <!--Entry for Zip and State-->
+                <StackLayout Orientation="Horizontal">
+
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Zip"/>
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="State"/>
+
+                </StackLayout>
+
+                <!--Entry for destination address and city-->
+                <Label Text="Destination Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Destination Address"/>
+                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
+
+                <!--Entry for Zip and State-->
+                <StackLayout Orientation="Horizontal">
+
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Zip"/>
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="State"/>
+
+                </StackLayout>
+
+                <!--Pick datetime for shipment-->
+                <Label Text="Shipment DateTime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                <StackLayout Orientation="Horizontal">
+
+                    <DatePicker VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                    <DatePicker VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <!--Button-->
+                <local:LoginButton Text="Get Quote" VerticalOptions="Start" HorizontalOptions="EndAndExpand" TextColor="White" WidthRequest="110" Command="{Binding GetQuoteCommand}" Style="{StaticResource ButtonStyle}"/>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

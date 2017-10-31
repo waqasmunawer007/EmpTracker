@@ -21,6 +21,7 @@ namespace EmpTrack.ViewModels.Auction
         public string client_ID;
         public Vehicle vehiclee;
         public bool isbusy;
+        public bool messagevisibility;
         public Client clientdetails;
         
         public AuctionViewModelForUser1(INavigation _navigation)
@@ -69,6 +70,19 @@ namespace EmpTrack.ViewModels.Auction
             }
         }
 
+        public bool MessageVisibility
+        {
+            get
+            {
+                return messagevisibility;
+            }
+            set
+            {
+                messagevisibility = value;
+                onPropertyChanged("MessageVisibility");
+            }
+        }
+
         public Vehicle Vehiclee
         {
             get
@@ -103,8 +117,26 @@ namespace EmpTrack.ViewModels.Auction
             {
                 return new Command(() =>
                 {
-                    IsBusy = true;
-                    FetchCarDetailsByLotNum();
+                    if(String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Client_ID))
+                    {
+                        MessageVisibility = true;
+                    }
+                    else if(!String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Client_ID))
+                    {
+                        MessageVisibility = true;
+                    }
+                    else if(!String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Client_ID))
+                    {
+                        MessageVisibility = false;
+                        IsBusy = true;
+                        FetchCarDetailsByLotNum();
+                    }
+                    else if(String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Client_ID))
+                    {
+                        MessageVisibility = false;
+                        IsBusy = true;
+                        FetchClientDetail();
+                    }
                 });
             }
         }
@@ -116,8 +148,7 @@ namespace EmpTrack.ViewModels.Auction
             {
                 return new Command(() =>
                 {
-                    IsBusy = true;
-                    FetchClientDetail();
+                    _Navigation.PushAsync(new Views.CustomLocation.CustomLocationPage());
                 });
             }
         }
