@@ -9,7 +9,7 @@
             <StackLayout Padding="10,15,10,15">
 
                 <!--Entry for source address and city-->
-                <Label Text="Source Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                <Label Text="Source Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
                 <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Source Address"/>
                 <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
 
@@ -22,7 +22,7 @@
                 </StackLayout>
 
                 <!--Entry for destination address and city-->
-                <Label Text="Destination Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                <Label Text="Destination Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
                 <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Destination Address"/>
                 <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
 
@@ -35,7 +35,7 @@
                 </StackLayout>
 
                 <!--Pick datetime for shipment-->
-                <Label Text="Shipment DateTime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                <Label Text="Shipment DateTime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
                 <StackLayout Orientation="Horizontal">
 
                     <DatePicker VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>

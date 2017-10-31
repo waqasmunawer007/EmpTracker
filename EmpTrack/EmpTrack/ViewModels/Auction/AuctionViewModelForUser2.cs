@@ -128,11 +128,11 @@ namespace EmpTrack.ViewModels.Auction
                 {
                     if (String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID))
                     {
-                        App.Current.MainPage.DisplayAlert("", "You should enter atleast one value", "OK");
+                        App.Current.MainPage.DisplayAlert("Message", "You should enter atleast one value", "OK");
                     }
                     else if (!String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Buyer_ID))
                     {
-                        App.Current.MainPage.DisplayAlert("", "You should enter one value", "OK");
+                        App.Current.MainPage.DisplayAlert("Message", "You should enter one value", "OK");
                     }
                     else if (!String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID))
                     {

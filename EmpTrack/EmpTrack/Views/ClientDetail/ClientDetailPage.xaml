@@ -63,7 +63,7 @@
                     </StackLayout>
 
                     <!--Entry for destination address and city-->
-                    <Label Text="Destination Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                    <Label Text="Destination Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
                     <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Destination Address"/>
                     <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
 
@@ -77,7 +77,7 @@
 
 
                     <!--Shipment datetime-->
-                    <Label Text="Shipment Datetime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                    <Label Text="Shipment Datetime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
 
                     <StackLayout Orientation="Horizontal">
 
