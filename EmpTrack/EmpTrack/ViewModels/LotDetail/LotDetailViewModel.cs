@@ -13,13 +13,34 @@ using System.Diagnostics;
 
 namespace EmpTrack.ViewModels.LotDetail
 {
-    class LotDetailViewModel
+    class LotDetailViewModel : INotifyPropertyChanged
     {
         public INavigation _Navigation;
+        private Vehicle vehicle;
 
-        public LotDetailViewModel(INavigation _navigation)
+
+        public LotDetailViewModel(INavigation _navigation,Vehicle _vehicle)
         {
             _Navigation = _navigation;
+            vehicle = _vehicle;
+        }
+
+        public Vehicle Vehiclee
+        {
+            get
+            {
+                return vehicle;
+            }
+            set
+            {
+                vehicle = value;
+                OnPropertyChanged("LotDetail");
+            }
+        }
+
+        private void OnPropertyChanged(string v)
+        {
+            PropertyChanged(this,new PropertyChangedEventArgs(v));
         }
 
         public ICommand GetQuoteCommand
@@ -28,12 +49,11 @@ namespace EmpTrack.ViewModels.LotDetail
             {
                 return new Command(() =>
                 {
-                    _Navigation.PushAsync(new Views.Pricing.PricingPage());
+
                 });
             }
         }
-        
 
-        
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -24,10 +24,10 @@
                         <StackLayout Orientation="Horizontal">
 
                             <Label Text="First Name :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding firstName}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding ClientDetail.firstName}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
                             <Label Text="Last Name :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding lastName}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding ClientDetail.lastName}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
                         </StackLayout>
 
@@ -37,10 +37,10 @@
                         <StackLayout Orientation="Horizontal">
 
                             <Label Text="Age :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding age}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding ClientDetail.age}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
                             <Label Text="Sex :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding sex}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding ClientDetail.sex}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
                         </StackLayout>
 
@@ -53,21 +53,17 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Gray"/>
 
 
-                    <!--Entry for source address and city-->
-                    <Label Text="Source Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Source Address"/>
-                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
-
-                    <!--Entry for Zip and State-->
+                    <!--Entries for first name and last name inline-->
                     <StackLayout Orientation="Horizontal">
 
-                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Zip"/>
-                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="State"/>
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="First Name"/>
+
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Last Name"/>
 
                     </StackLayout>
 
                     <!--Entry for destination address and city-->
-                    <Label Text="Source Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                    <Label Text="Destination Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
                     <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Destination Address"/>
                     <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
 
@@ -79,8 +75,10 @@
 
                     </StackLayout>
 
-                    <!--Pick datetime-->
-                    <Label Text="Shipment DateTime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+
+                    <!--Shipment datetime-->
+                    <Label Text="Shipment Datetime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
+
                     <StackLayout Orientation="Horizontal">
 
                         <DatePicker VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>

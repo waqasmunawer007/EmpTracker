@@ -23,14 +23,14 @@
                         <StackLayout Orientation="Horizontal">
 
                             <Label Text="Make :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding Make}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding Vehiclee.Make}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
 
                             <Label Text="Model :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding Model}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding Vehiclee.Model}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
                             <Label Text="Year" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding Year}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding Vehiclee.Year}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
                         </StackLayout>
 
@@ -38,11 +38,11 @@
                         <StackLayout Orientation="Horizontal">
 
                             <Label Text="Class :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding Class}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding Vehiclee.Class}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
 
                             <Label Text="Location :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding Location}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding Vehiclee.Location}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
                         </StackLayout>
 
@@ -50,7 +50,7 @@
                         <StackLayout Orientation="Horizontal">
 
                             <Label Text="Trim :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding Trim}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding Vehiclee.Trim}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
                         </StackLayout>
 
@@ -58,7 +58,7 @@
                         <StackLayout Orientation="Horizontal">
 
                             <Label Text="Description :" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                            <Label Text="{Binding Description}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
+                            <Label Text="{Binding Vehiclee.Description}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ApiResponseTextColor}"/>
 
                         </StackLayout>
 
@@ -81,12 +81,21 @@
 
                     </StackLayout>
 
-                    <!--Entry for destination address-->
-                    <Label Text="Destination Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
-                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City,Zip,State"/>
+                    <!--Entry for destination address and city-->
+                    <Label Text="Destination Address" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Destination Address"/>
+                    <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="City"/>
+
+                    <!--Entry for Zip and State-->
+                    <StackLayout Orientation="Horizontal">
+
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Zip"/>
+                        <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="State"/>
+
+                    </StackLayout>
 
                     <!--Shipment datetime-->
-                    <Label Text="Shipment Datetime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}"/>
+                    <Label Text="Shipment Datetime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
                     
                     <StackLayout Orientation="Horizontal">
 

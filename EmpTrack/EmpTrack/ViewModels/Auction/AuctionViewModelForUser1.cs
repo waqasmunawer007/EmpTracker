@@ -1,4 +1,5 @@
-﻿using Services.Models;
+﻿using Plugin.Connectivity;
+using Services.Models;
 using Services.NetworkServices.ClientDetails;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using EmpTrack.Constants;
 
 namespace EmpTrack.ViewModels.Auction
 {
@@ -21,13 +23,13 @@ namespace EmpTrack.ViewModels.Auction
         public string client_ID;
         public Vehicle vehiclee;
         public bool isbusy;
+        public bool messagevisibility;
         public Client clientdetails;
         
         public AuctionViewModelForUser1(INavigation _navigation)
         {
             _Navigation = _navigation;
         }
-
         public string Lot_Num
         {
             get
@@ -41,7 +43,6 @@ namespace EmpTrack.ViewModels.Auction
 
             }
         }
-
         public string Client_ID
         {
             get
@@ -55,7 +56,6 @@ namespace EmpTrack.ViewModels.Auction
 
             }
         }
-
         public bool IsBusy
         {
             get
@@ -68,7 +68,18 @@ namespace EmpTrack.ViewModels.Auction
                 onPropertyChanged("IsBusy");
             }
         }
-
+        public bool MessageVisibility
+        {
+            get
+            {
+                return messagevisibility;
+            }
+            set
+            {
+                messagevisibility = value;
+                onPropertyChanged("MessageVisibility");
+            }
+        }
         public Vehicle Vehiclee
         {
             get
@@ -81,7 +92,6 @@ namespace EmpTrack.ViewModels.Auction
                 onPropertyChanged("Vehiclee");
             }
         }
-
         public Client ClientDetails
         {
             get
@@ -94,36 +104,60 @@ namespace EmpTrack.ViewModels.Auction
                 onPropertyChanged("ClientDetails");
             }
         }
-
-
-        
         public ICommand FetchDetailsCommand
         {
             get
             {
                 return new Command(() =>
                 {
-                    IsBusy = true;
-                    FetchCarDetailsByLotNum();
+                if (String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Client_ID))
+                {
+						App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuctionMessage, APIsConstant.OK);
+                }
+                else if (!String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Client_ID))
+                {
+
+                    App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuctionMessage, APIsConstant.OK);
+                }
+                else if(!String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Client_ID))
+                {
+                    if(CrossConnectivity.Current.IsConnected)
+                    {
+                        IsBusy = true;
+                        FetchCarDetailsByLotNum();
+                    }
+                    else
+                    {
+                        App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                    }
+                    
+                }
+                else if(String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Client_ID))
+                {
+                    if(CrossConnectivity.Current.IsConnected)
+                    {
+                        IsBusy = true;
+                        FetchClientDetail();
+                    }
+                    else
+                    {
+                        App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                    }
+                    
+                }
                 });
             }
         }
-
-        
         public ICommand PersonalLocationCommand
         {
             get
             {
                 return new Command(() =>
                 {
-                    IsBusy = true;
-                    FetchClientDetail();
+                    _Navigation.PushAsync(new Views.CustomLocation.CustomLocationPage());
                 });
             }
         }
-
-
-
         #region Fetch client detail against client id
         private async void FetchClientDetail()
         {
@@ -136,20 +170,19 @@ namespace EmpTrack.ViewModels.Auction
                 {
                     ClientDetails = clientResponse.client;
                     IsBusy = false;
-                    _Navigation.PushAsync(new Views.ClientDetail.ClientDetailPage(ClientDetails));
+                    await _Navigation.PushAsync(new Views.ClientDetail.ClientDetailPage(ClientDetails));
                 }
                 // if api response is null
                 else
                 {
                     // show error
-                    await Application.Current.MainPage.DisplayAlert("Error", "Something went wrong, check internet settings", "OK");
-                    Debug.WriteLine("Error Message : " + clientResponse.ErrorMessage);
+                    await Application.Current.MainPage.DisplayAlert("", clientResponse.ErrorMessage, APIsConstant.OK);
                     IsBusy = false;
                 }
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Cancel");
+                await App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
                 IsBusy = false;
             }
         }
@@ -168,20 +201,19 @@ namespace EmpTrack.ViewModels.Auction
                     //assign to notifuy property
                     Vehiclee = lotResponse.vehicle;
                     IsBusy = false;
-                    _Navigation.PushAsync(new Views.LotDetail.LotDetailPage(Vehiclee));
+                    await _Navigation.PushAsync(new Views.LotDetail.LotDetailPage(Vehiclee));
                 }
                 // if api response is null
                 else
                 {
                     // show error
-                    await Application.Current.MainPage.DisplayAlert("Error", "Somethin went wrong, check internet settings", "OK");
-                    Debug.WriteLine("Error Message " + lotResponse.ErrorMessage);
+                    await Application.Current.MainPage.DisplayAlert("", lotResponse.ErrorMessage, APIsConstant.OK);
                     IsBusy = false;
                 }
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Cancel");
+                await App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
                 IsBusy = false;
             }
         }

@@ -12,7 +12,6 @@ namespace EmpTrack.Constants
         public static String BaseURL = "http://webapplication520171102065324.azurewebsites.net/";
         //public static String BaseURL = "http://c11acd85.ngrok.io/api/";
 
-
         #region  web apis 
         public static String SaveEmpDetailAPI = "api/employee/request/profile";
         public static String FetchLotDetails = "api/vehicle/request/get/detail/lot?lot_id=";
@@ -37,15 +36,24 @@ namespace EmpTrack.Constants
         public const string IfWorkingWeekend = "ifWorkingWeekend";
         public const string IfComplianceVoilation = "ifComplianceVoilation";
         public const string WorkerAuthorization = "workerAuthorization";
-		#endregion
+        #endregion
 
-		#region Domains
-		//public static string ClientIDForDomain1 = "5df5d1a2-6581-41d2-87ec-52dc48f14461";
-		//public static string ClientIDForDomain2 = "ee6b1ba3-99b1-4d62-9ef9-833c8c5b31fb";
-		public static string ClientIDForDomain1 = "5560b06a-cdce-45e3-a7b4-92b17b281045";
-		public static string ClientIDForDomain2 = "5ef95ad6-6928-4e05-9d10-0957fbe544b8";
-        public static string RedirectURLDomain = "ilhob://auth";  
+        #region Domains
+        //public static string ClientIDForDomain1 = "5df5d1a2-6581-41d2-87ec-52dc48f14461";
+        //public static string ClientIDForDomain2 = "ee6b1ba3-99b1-4d62-9ef9-833c8c5b31fb";
+        public static string ClientIDForDomain1 = "5560b06a-cdce-45e3-a7b4-92b17b281045";
+        public static string ClientIDForDomain2 = "5ef95ad6-6928-4e05-9d10-0957fbe544b8";
+        public static string RedirectURLDomain = "ilhob://auth";
 
-		#endregion
-	}
+        #endregion
+
+        #region
+        public const string AlertForAuction2Message = "You should enter either one value,Lot# or BuyerId";
+        public const string AlertForAuctionMessage = "You should enter either one value,Lot# or ClientId";
+        public const string AlertTitleForAuction = "Invalid Inputs";
+        public const string NetworkAlertTitle = "Oops";
+        public const string OK = "Ok";
+        public const string NetworkError = "Please check your internet connection, then try again.";
+        #endregion
+    }
 }

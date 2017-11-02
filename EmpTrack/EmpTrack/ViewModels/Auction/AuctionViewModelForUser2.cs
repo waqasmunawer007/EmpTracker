@@ -1,4 +1,5 @@
-﻿using Services.Models;
+﻿using Plugin.Connectivity;
+using Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using EmpTrack.Constants;
 
 namespace EmpTrack.ViewModels.Auction
 {
@@ -21,6 +23,7 @@ namespace EmpTrack.ViewModels.Auction
         public string buyer_ID;
         ObservableCollection<LotGroupEntity> vehicle;
         public bool isbusy;
+        public bool messagevisibility;
         public Vehicle vehiclee;
 
         public AuctionViewModelForUser2(INavigation _navigation)
@@ -78,6 +81,19 @@ namespace EmpTrack.ViewModels.Auction
             }
         }
 
+        public bool MessageVisibility
+        {
+            get
+            {
+                return messagevisibility;
+            }
+            set
+            {
+                messagevisibility = value;
+                onPropertyChanged("MessageVisibility");
+            }
+        }
+
         public ObservableCollection<LotGroupEntity> Vehicle
         {
             get
@@ -111,15 +127,38 @@ namespace EmpTrack.ViewModels.Auction
             {
                 return new Command(() =>
                 {
-                    if(!String.IsNullOrEmpty(Lot_Num))
+                    if (String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID))
                     {
-                        IsBusy = true;
-                        FetchCarDetailsByLotNum();
+                        App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuction2Message, APIsConstant.OK);
                     }
-                    else if(!String.IsNullOrEmpty(Buyer_ID))
+                    else if (!String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Buyer_ID))
                     {
-                        _Navigation.PushAsync(new Views.LocationDetail.LocationDetailPage(Buyer_ID));
+                        App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuction2Message, APIsConstant.OK);
                     }
+                    else if (!String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID))
+                    {
+                        if(CrossConnectivity.Current.IsConnected)
+                        {
+                            IsBusy = true;
+                            FetchCarDetailsByLotNum();
+                        }
+                        else
+                        {
+                           App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                        }
+                    }
+                    else if (String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Buyer_ID))
+                    {
+                        if(CrossConnectivity.Current.IsConnected)
+                        {
+                            _Navigation.PushAsync(new Views.LocationDetail.LocationDetailPage(Buyer_ID));
+                        }
+                        else
+                        {
+                            App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                        }
+                    }
+                    
                 });
             }
         }

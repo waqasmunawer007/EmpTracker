@@ -18,8 +18,8 @@ namespace EmpTrack.Views.ClientDetail
         public ClientDetailPage(Client clientdetails)
         {
             InitializeComponent();
-            clientdetailViewModel = new ClientDetailViewModel(Navigation);
-            BindingContext = clientdetails;
+            clientdetailViewModel = new ClientDetailViewModel(Navigation,clientdetails);
+            BindingContext = clientdetailViewModel;
         }
 
         protected override void OnAppearing()

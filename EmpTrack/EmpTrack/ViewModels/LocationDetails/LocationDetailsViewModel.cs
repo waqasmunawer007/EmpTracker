@@ -22,7 +22,7 @@ namespace EmpTrack.ViewModels.LocationDetails
         private string Buyer_ID;
         private bool isbusy;
         private bool visibility;
-
+        
         public LocationDetailsViewModel(INavigation _navigation, string buyer_id)
         {
             _Navigation = _navigation;
@@ -42,6 +42,8 @@ namespace EmpTrack.ViewModels.LocationDetails
                 OnPropertyChanged("LotGroupList");
             }
         }
+
+        
 
         public bool IsBusy
         {

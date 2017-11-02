@@ -3,42 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EmpTrack.Views.Auction.AuctionPageForUser1"
              xmlns:local="clr-namespace:EmpTrack.Customizations"
-             xmlns:converter1="clr-namespace:EmpTrack.Converter"
              Title="Auction">
     
-    
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converter1:HideAndShowLotNo x:Key="lotNoConverter"/>
-            <converter1:HideAndShowClientID x:Key="clientIdConverter"/>
-            <converter1:HideAndShowButton x:Key="dataHasBeenEntered"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
             <StackLayout Padding="10,15,10,0">
 
                 <!--Entry for lot#-->
-                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Lot#" Text="{Binding Lot_Num}" IsEnabled="{Binding Client_ID,Converter={StaticResource clientIdConverter}}"/>
+                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Lot#" Text="{Binding Lot_Num}"/>
 
                 <!--Label for OR between Entries-->
                 <Label Text="OR" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" Margin="0,20,0,20" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalFontSize}" />
 
                 <!--Entry for client ID-->
-                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Client ID" Text="{Binding Client_ID}" IsEnabled="{Binding Lot_Num,Converter={StaticResource lotNoConverter}}"/>
+                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" Placeholder="Client ID" Text="{Binding Client_ID}"/>
 
                 <!--Activityindicator-->
                 <ActivityIndicator VerticalOptions="Start" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Margin="0,10,0,10"/>
 
                 <!--Fetch detail button-->
-                <local:LoginButton Text="Fetch Details" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource ButtonTextColor}" WidthRequest="110" Command="{Binding FetchDetailsCommand}"  Style="{StaticResource ButtonStyle}" IsEnabled="{Binding Lot_Num ,Converter={StaticResource dataHasBeenEntered}}" FontSize="{StaticResource SmallFontSize}" />
+                <local:LoginButton Text="Fetch Details" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource ButtonTextColor}" WidthRequest="110" Command="{Binding FetchDetailsCommand}"  Style="{StaticResource ButtonStyle}" FontSize="{StaticResource SmallFontSize}" />
 
                 <!--Label for OR between buttons-->
                 <Label Text="OR" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" Margin="0,20,0,20" TextColor="{StaticResource NormalTextColor}"/>
 
                 <!--Personal location button-->
-                <local:LoginButton Text="Custom Location" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource ButtonTextColor}" WidthRequest="110" Command="{Binding PersonalLocationCommand}" Style="{StaticResource ButtonStyle}" IsEnabled="{Binding Client_ID,Converter={StaticResource dataHasBeenEntered}}" FontSize="{StaticResource SmallFontSize}"/>
+                <local:LoginButton Text="Custom Location" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource ButtonTextColor}" WidthRequest="110" Command="{Binding PersonalLocationCommand}" Style="{StaticResource ButtonStyle}" FontSize="{StaticResource SmallFontSize}"/>
 
 
             </StackLayout>
