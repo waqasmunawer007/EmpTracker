@@ -48,7 +48,8 @@ namespace EmpTrack.ViewModels.User
                         Settings.DomainType = 1;
                         if (!String.IsNullOrEmpty(Settings.Email))
                         {
-                            Application.Current.MainPage = new Views.Menu.MainPage();
+                           
+                            Application.Current.MainPage = new NavigationPage(new Views.Auction.AuctionPageForUser2());
                         }
                         else if (String.IsNullOrEmpty(Settings.Email))
                         {
@@ -59,7 +60,7 @@ namespace EmpTrack.ViewModels.User
                             {
                                 App.PCA1.Remove(user);
                             }
-                            Application.Current.MainPage = new Views.Auction.AuctionPageForUser2();
+                            Application.Current.MainPage = new NavigationPage (new Views.Auction.AuctionPageForUser2());
                         }
                     }
                     catch (Exception ex)

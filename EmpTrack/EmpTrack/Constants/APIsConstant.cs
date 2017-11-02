@@ -9,15 +9,15 @@ namespace EmpTrack.Constants
     public class APIsConstant
     {
         //public static String BaseURL = "http://apidocapp.azurewebsites.net/";
-        public static String BaseURL = "http://integratedmobile.azurewebsites.net/";
+        public static String BaseURL = "http://webapplication520171102065324.azurewebsites.net/";
         //public static String BaseURL = "http://c11acd85.ngrok.io/api/";
 
 
         #region  web apis 
         public static String SaveEmpDetailAPI = "api/employee/request/profile";
-        public static String FetchLotDetails = "vehicle/request/get/detail/lot?lot_id=";
-        public static String FetchClientDetails = "client/request/get/detail/?id=";
-        public static String FetchLotList = "vehicle/request/get/detail/buyerId?buyerId=";
+        public static String FetchLotDetails = "api/vehicle/request/get/detail/lot?lot_id=";
+        public static String FetchClientDetails = "api/client/request/get/detail/?id=";
+        public static String FetchLotList = "api/vehicle/request/get/detail/buyerId?buyerId=";
 
         #endregion
 
