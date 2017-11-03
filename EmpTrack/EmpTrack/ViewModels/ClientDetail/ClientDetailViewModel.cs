@@ -45,7 +45,7 @@ namespace EmpTrack.ViewModels.ClientDetail
             {
                 return new Command(() =>
                 {
-
+                    _Navigation.PushAsync(new Views.Pricing.PricingPage());
                 });
             }
         }

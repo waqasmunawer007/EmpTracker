@@ -35,7 +35,7 @@
                 </StackLayout>
 
                 <!--Pick datetime for shipment-->
-                <Label Text="Shipment DateTime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
+                <Label Text="Pick Off" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
                 <StackLayout Orientation="Horizontal">
 
                     <DatePicker VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>

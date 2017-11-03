@@ -9,14 +9,10 @@
     <ContentPage.Content>
 
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-
-            <!--Activity indicator-->
-            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
-
             <StackLayout>
-                
+
                 <!--listview-->
-                <ListView  x:Name="GroupedView" IsVisible="{Binding Visibility}"
+                <ListView  x:Name="GroupedView"
                 GroupDisplayBinding="{Binding Location}"
                 RowHeight="50"
                 IsGroupingEnabled="true">
@@ -30,7 +26,6 @@
                                         <Label Text="{Binding LotId}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
                                     </StackLayout>
                                 </StackLayout>
-
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -38,7 +33,7 @@
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal" Padding="5,5,5,5" BackgroundColor="#E2F5F9">
+                                <StackLayout Orientation="Horizontal" Padding="5,5,5,5" BackgroundColor="{StaticResource GroupedListviewBackgroundColor}">
                                     <StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <m16:Checkbox VerticalOptions="Start" HorizontalOptions="Start" x:Name="{Binding TitleWithItemCount}" CheckedChanged="ParentCheckedChaned" Checked="{Binding _Checked}" />
@@ -58,8 +53,11 @@
                         </DataTemplate>
                     </ListView.GroupHeaderTemplate>
                 </ListView>
-            </StackLayout>
 
+                <!--Button-->
+                <local:LoginButton Text="Get Quote" VerticalOptions="Start" HorizontalOptions="EndAndExpand" TextColor="White" WidthRequest="110" Command="{Binding GetQuoteCommand}" Style="{StaticResource ButtonStyle}" Margin="0,10,10,0"/>
+
+            </StackLayout>
         </StackLayout>
         
     </ContentPage.Content>

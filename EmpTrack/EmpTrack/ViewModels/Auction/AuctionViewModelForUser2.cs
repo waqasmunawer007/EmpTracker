@@ -21,17 +21,14 @@ namespace EmpTrack.ViewModels.Auction
         INavigation _Navigation;
         public string lot_Num;
         public string buyer_ID;
-        ObservableCollection<LotGroupEntity> vehicle;
         public bool isbusy;
-        public bool messagevisibility;
-        public Vehicle vehiclee;
+        private ObservableCollection<LotGroupEntity> lotgrouplist;
 
         public AuctionViewModelForUser2(INavigation _navigation)
         {
             _Navigation = _navigation;
-            vehicle = new ObservableCollection<LotGroupEntity>();
+            lotgrouplist = new ObservableCollection<LotGroupEntity>();
         }
-
         public string Lot_Num
         {
             get
@@ -41,11 +38,9 @@ namespace EmpTrack.ViewModels.Auction
             set
             {
                 lot_Num = value;
-                onPropertyChanged("Lot_Num");
-                onPropertyChanged("ConcatFields");
+                OnPropertyChanged("Lot_Num");
             }
         }
-
         public string Buyer_ID
         {
             get
@@ -55,19 +50,9 @@ namespace EmpTrack.ViewModels.Auction
             set
             {
                 buyer_ID = value;
-                onPropertyChanged("Buyer_ID");
-                onPropertyChanged("ConcatFields");
+                OnPropertyChanged("Buyer_ID");
             }
         }
-
-        public string ConcatFields
-        {
-            get
-            {
-                return string.Format("{0},{1}", lot_Num, buyer_ID);  
-            }
-        }
-
         public bool IsBusy
         {
             get
@@ -77,81 +62,53 @@ namespace EmpTrack.ViewModels.Auction
             set
             {
                 isbusy = value;
-                onPropertyChanged("IsBusy");
+                OnPropertyChanged("IsBusy");
             }
         }
-
-        public bool MessageVisibility
+        public ObservableCollection<LotGroupEntity> LotGroupList
         {
             get
             {
-                return messagevisibility;
+                return lotgrouplist;
             }
             set
             {
-                messagevisibility = value;
-                onPropertyChanged("MessageVisibility");
+                lotgrouplist = value;
+                OnPropertyChanged("LotGroupList");
             }
         }
-
-        public ObservableCollection<LotGroupEntity> Vehicle
-        {
-            get
-            {
-                return vehicle;
-            }
-            set
-            {
-                vehicle = value;
-                onPropertyChanged("Vehicle");
-            }
-        }
-
-        public Vehicle Vehiclee
-        {
-            get
-            {
-                return vehiclee;
-            }
-            set
-            {
-                vehiclee = value;
-                onPropertyChanged("Vehiclee");
-            }
-        }
-
-
         public ICommand FetchDetailsCommand
         {
             get
             {
                 return new Command(() =>
                 {
-                    if (String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID))
+                    if (String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID)) //if lot# and buyer id both fields are empty
                     {
                         App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuction2Message, APIsConstant.OK);
                     }
-                    else if (!String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Buyer_ID))
+                    else if (!String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Buyer_ID)) //if lot# and buyer id both fields are filled
                     {
                         App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuction2Message, APIsConstant.OK);
                     }
-                    else if (!String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID))
+                    else if (!String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Buyer_ID)) //if lot # is enter
                     {
                         if(CrossConnectivity.Current.IsConnected)
                         {
                             IsBusy = true;
-                            FetchCarDetailsByLotNum();
+                            FetchCarDetailsByLotNum(); //fetch car detail
                         }
                         else
                         {
                            App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
                         }
                     }
-                    else if (String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Buyer_ID))
+                    else if (String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Buyer_ID)) //if buyer id is enter
                     {
                         if(CrossConnectivity.Current.IsConnected)
                         {
-                            _Navigation.PushAsync(new Views.LocationDetail.LocationDetailPage(Buyer_ID));
+                            IsBusy = true;
+                            FetchLotList();
                         }
                         else
                         {
@@ -162,8 +119,52 @@ namespace EmpTrack.ViewModels.Auction
                 });
             }
         }
+        #region Fetch lotlist against buyer id
+        private async void FetchLotList()
+        {
+            var cardetailservicesssss = new Services.NetworkServices.CarDetails.CarDetailsService();
+            LotList lotResponse = await cardetailservicesssss.FetchLotListByBuyerID(Buyer_ID);
+            // if api response is not null
+            if (lotResponse != null)
+            {
+                if (lotResponse.Status)
+                {
+                    var locations = lotResponse.vehicle.GroupBy(x => x.Location).Select(a => new { location = a.Key, count = a.Count() });
 
+                    foreach (var location in locations)
+                    {
+                        LotGroupEntity groupEntity = new LotGroupEntity();
+                        groupEntity.Location = location.location;
+                        ObservableCollection<Vehicle> vehicles = new ObservableCollection<Vehicle>();
 
+                        foreach (Vehicle vehicle in lotResponse.vehicle)
+                        {
+                            if (vehicle.Location.Equals(location.location))
+                            {
+                                vehicles.Add(vehicle);
+                            }
+                        }
+                        groupEntity.vehicle = vehicles;
+                        LotGroupList.Add(groupEntity);
+                    }
+                    await _Navigation.PushAsync(new Views.LocationDetail.LocationDetailPage(LotGroupList));
+                    IsBusy = false;
+                }
+                // if api response is null
+                else
+                {
+                    // show error
+                    await Application.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForDataNotFound, APIsConstant.LotListNotFound, APIsConstant.OK);
+                    IsBusy = false;
+                }
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForNullApiResponse, APIsConstant.AlertForNullApiResponse, APIsConstant.OK);
+                IsBusy = false;
+            }
+        }
+        #endregion
         #region Fetch car detail against lot ID
         private async void FetchCarDetailsByLotNum()
         {
@@ -174,31 +175,26 @@ namespace EmpTrack.ViewModels.Auction
             {
                 if (lotResponse.Status)
                 {
-                    //assign to notifuy property
-                    Vehiclee = lotResponse.vehicle;
                     IsBusy = false;
-                    _Navigation.PushAsync(new Views.LotDetail.LotDetailPage(Vehiclee));
+                    await _Navigation.PushAsync(new Views.LotDetail.LotDetailPage(lotResponse.vehicle));
                 }
                 // if api response is null
                 else
                 {
                     // show error
-                    await Application.Current.MainPage.DisplayAlert("Error", "Something went wrong, check internet settings", "OK");
-                    Debug.WriteLine("Error Message " + lotResponse.ErrorMessage);
+                    await Application.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForDataNotFound, APIsConstant.CarDetailNotFound, APIsConstant.OK);
                     IsBusy = false;
                 }
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Cancel");
+                await App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForNullApiResponse, APIsConstant.AlertForNullApiResponse, APIsConstant.OK);
                 IsBusy = false;
             }
         }
         #endregion
 
-        
-
-        private void onPropertyChanged(string data)
+        private void OnPropertyChanged(string data)
         {
             PropertyChanged(this, new PropertyChangedEventArgs(data));
         }

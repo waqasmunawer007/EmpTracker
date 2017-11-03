@@ -53,6 +53,12 @@ namespace EmpTrack.Constants
         public const string AlertTitleForAuction = "Invalid Inputs";
         public const string NetworkAlertTitle = "Oops";
         public const string OK = "Ok";
+        public const string AlertTitleForNullApiResponse = "Oops";
+        public const string AlertForNullApiResponse = "Server not found";
+        public const string AlertTitleForDataNotFound = "Oops";
+        public const string CarDetailNotFound = "Lot # you entered is invalid";
+        public const string ClientDetailNotFound = "Client ID you entered is invalid";
+        public const string LotListNotFound = "Buyer ID you entered is invalid";
         public const string NetworkError = "Please check your internet connection, then try again.";
         #endregion
     }

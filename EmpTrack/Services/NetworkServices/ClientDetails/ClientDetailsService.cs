@@ -12,13 +12,25 @@ namespace Services.NetworkServices.ClientDetails
     {
         public async Task<Models.ClientDetails> FetchClientDetails(string clientid)
         {
-            string r = EmpTrack.Constants.APIsConstant.FetchClientDetails + clientid;
-            var responseJson = await client.GetAsync(r);
-            string json = await responseJson.Content.ReadAsStringAsync();
             try
             {
-                var lotresponse = JsonConvert.DeserializeObject<Services.Models.ClientDetails>(json);
-                return lotresponse;
+                string r = EmpTrack.Constants.APIsConstant.FetchClientDetails + clientid;
+                var responseJson = await client.GetAsync(r);
+                string json = await responseJson.Content.ReadAsStringAsync();
+                if(!json.Equals(null)) //only parse json if it contains data
+                {
+                    if(json.Contains("true"))
+                    {
+                        var lotresponse = JsonConvert.DeserializeObject<Services.Models.ClientDetails>(json);
+                        return lotresponse;
+                    }
+                    else if (json.Contains("false"))
+                    {
+                        Services.Models.ClientDetails clientDetail = new Services.Models.ClientDetails();
+                        clientDetail.Status = false;
+                        return clientDetail;
+                    }
+                }
             }
             catch
             {

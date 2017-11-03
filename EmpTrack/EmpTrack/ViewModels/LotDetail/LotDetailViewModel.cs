@@ -49,7 +49,7 @@ namespace EmpTrack.ViewModels.LotDetail
             {
                 return new Command(() =>
                 {
-
+                    _Navigation.PushAsync(new Views.Pricing.PricingPage());
                 });
             }
         }

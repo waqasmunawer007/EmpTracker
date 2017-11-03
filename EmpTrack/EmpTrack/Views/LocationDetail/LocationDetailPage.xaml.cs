@@ -21,27 +21,18 @@ namespace EmpTrack.Views.LocationDetail
         private ObservableCollection<LotGroupEntity> _expandedGroups;
         private List<string> parent = new List<string>();
 
-        public LocationDetailPage(string buyer_id)
+        public LocationDetailPage(ObservableCollection<LotGroupEntity> lotGroupList)
         {
             InitializeComponent();
-            locationdetailViewModel = new LocationDetailsViewModel(Navigation,buyer_id);
+            locationdetailViewModel = new LocationDetailsViewModel(Navigation,lotGroupList);
             BindingContext = locationdetailViewModel;
-            _allGroups = locationdetailViewModel.LotGroupList;
-            
+            _allGroups = locationdetailViewModel.LotGroupList;   
         }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            getLotList();
-        }
-
-        private async void getLotList()
-        {
-            await locationdetailViewModel.FetchLotList();
             UpdateListContent();
         }
-
         private void HeaderTapped(object sender, EventArgs args)
         {
             int selectedIndex = _expandedGroups.IndexOf(
@@ -49,7 +40,6 @@ namespace EmpTrack.Views.LocationDetail
             _allGroups[selectedIndex].Expanded = !_allGroups[selectedIndex].Expanded;
             UpdateListContent();
         }
-
         public void ParentCheckedChaned(object sender, EventArgs args)
         {
             var selectedIndex = _expandedGroups.IndexOf(((LotGroupEntity)((Messier16.Forms.Controls.Checkbox)sender).BindingContext as LotGroupEntity));
@@ -289,9 +279,6 @@ namespace EmpTrack.Views.LocationDetail
             }
 
         }
-
-
-
         private void UpdateListContent()
         {
             _expandedGroups = new ObservableCollection<LotGroupEntity>();
@@ -323,6 +310,5 @@ namespace EmpTrack.Views.LocationDetail
             }
             GroupedView.ItemsSource = _expandedGroups;
         }
-
     }
 }

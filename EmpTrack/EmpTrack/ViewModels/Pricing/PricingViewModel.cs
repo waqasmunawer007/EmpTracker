@@ -68,6 +68,72 @@ namespace EmpTrack.ViewModels.Pricing
                  id=4,
                  price=26,
                  distance=78
+            },
+            new PricingViewModel
+            {
+                 id=5,
+                 price=29,
+                 distance=38
+            },
+            new PricingViewModel
+            {
+                 id=6,
+                 price=86,
+                 distance=20
+            },
+            new PricingViewModel
+            {
+                 id=7,
+                 price=96,
+                 distance=15
+            },
+            new PricingViewModel
+            {
+                 id=8,
+                 price=99,
+                 distance=12
+            },
+            new PricingViewModel
+            {
+                 id=9,
+                 price=56,
+                 distance=66
+            },
+            new PricingViewModel
+            {
+                 id=10,
+                 price=66,
+                 distance=77
+            },
+            new PricingViewModel
+            {
+                 id=11,
+                 price=73,
+                 distance=31
+            },
+            new PricingViewModel
+            {
+                 id=12,
+                 price=26,
+                 distance=78
+            },
+            new PricingViewModel
+            {
+                 id=13,
+                 price=49,
+                 distance=30
+            },
+            new PricingViewModel
+            {
+                 id=14,
+                 price=22,
+                 distance=17
+            },
+            new PricingViewModel
+            {
+                 id=15,
+                 price=62,
+                 distance=19
             }
 
         };

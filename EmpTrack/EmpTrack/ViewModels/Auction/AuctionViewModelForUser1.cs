@@ -21,10 +21,7 @@ namespace EmpTrack.ViewModels.Auction
         INavigation _Navigation;
         public string lot_Num;
         public string client_ID;
-        public Vehicle vehiclee;
         public bool isbusy;
-        public bool messagevisibility;
-        public Client clientdetails;
         
         public AuctionViewModelForUser1(INavigation _navigation)
         {
@@ -68,83 +65,44 @@ namespace EmpTrack.ViewModels.Auction
                 onPropertyChanged("IsBusy");
             }
         }
-        public bool MessageVisibility
-        {
-            get
-            {
-                return messagevisibility;
-            }
-            set
-            {
-                messagevisibility = value;
-                onPropertyChanged("MessageVisibility");
-            }
-        }
-        public Vehicle Vehiclee
-        {
-            get
-            {
-                return vehiclee;
-            }
-            set
-            {
-                vehiclee = value;
-                onPropertyChanged("Vehiclee");
-            }
-        }
-        public Client ClientDetails
-        {
-            get
-            {
-                return clientdetails;
-            }
-            set
-            {
-                clientdetails = value;
-                onPropertyChanged("ClientDetails");
-            }
-        }
         public ICommand FetchDetailsCommand
         {
             get
             {
                 return new Command(() =>
                 {
-                if (String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Client_ID))
-                {
-						App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuctionMessage, APIsConstant.OK);
-                }
-                else if (!String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Client_ID))
-                {
-
-                    App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuctionMessage, APIsConstant.OK);
-                }
-                else if(!String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Client_ID))
-                {
-                    if(CrossConnectivity.Current.IsConnected)
+                    if (String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Client_ID)) //if lot# and client id both fields are empty
                     {
-                        IsBusy = true;
-                        FetchCarDetailsByLotNum();
+				        App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuctionMessage, APIsConstant.OK);
                     }
-                    else
+                    else if (!String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Client_ID)) //if lot# and client id both fields are filled
                     {
-                        App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                        App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForAuction, APIsConstant.AlertForAuctionMessage, APIsConstant.OK);
                     }
-                    
-                }
-                else if(String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Client_ID))
-                {
-                    if(CrossConnectivity.Current.IsConnected)
+                    else if(!String.IsNullOrEmpty(Lot_Num) && String.IsNullOrEmpty(Client_ID)) //if lot# is enter
                     {
-                        IsBusy = true;
-                        FetchClientDetail();
+                        if(CrossConnectivity.Current.IsConnected)
+                        {
+                            IsBusy = true;
+                            FetchCarDetailsByLotNum(); //fetch car detail
+                        }
+                        else
+                        {
+                            App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                        }           
                     }
-                    else
+                    else if(String.IsNullOrEmpty(Lot_Num) && !String.IsNullOrEmpty(Client_ID)) //if client id is enter
                     {
-                        App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                        if(CrossConnectivity.Current.IsConnected)
+                        {
+                            IsBusy = true;
+                            FetchClientDetail(); //fetch client detail
+                        }
+                        else
+                        {
+                            App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                        }
                     }
-                    
-                }
                 });
             }
         }
@@ -168,21 +126,20 @@ namespace EmpTrack.ViewModels.Auction
             {
                 if (clientResponse.Status)
                 {
-                    ClientDetails = clientResponse.client;
                     IsBusy = false;
-                    await _Navigation.PushAsync(new Views.ClientDetail.ClientDetailPage(ClientDetails));
+                    await _Navigation.PushAsync(new Views.ClientDetail.ClientDetailPage(clientResponse.client));
                 }
                 // if api response is null
                 else
                 {
                     // show error
-                    await Application.Current.MainPage.DisplayAlert("", clientResponse.ErrorMessage, APIsConstant.OK);
+                    await Application.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForDataNotFound, APIsConstant.ClientDetailNotFound , APIsConstant.OK);
                     IsBusy = false;
                 }
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                await App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForNullApiResponse, APIsConstant.AlertForNullApiResponse, APIsConstant.OK);
                 IsBusy = false;
             }
         }
@@ -198,22 +155,20 @@ namespace EmpTrack.ViewModels.Auction
             {
                 if (lotResponse.Status)
                 {
-                    //assign to notifuy property
-                    Vehiclee = lotResponse.vehicle;
                     IsBusy = false;
-                    await _Navigation.PushAsync(new Views.LotDetail.LotDetailPage(Vehiclee));
+                    await _Navigation.PushAsync(new Views.LotDetail.LotDetailPage(lotResponse.vehicle));
                 }
                 // if api response is null
                 else
                 {
                     // show error
-                    await Application.Current.MainPage.DisplayAlert("", lotResponse.ErrorMessage, APIsConstant.OK);
+                    await Application.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForDataNotFound ,APIsConstant.CarDetailNotFound, APIsConstant.OK);
                     IsBusy = false;
                 }
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+                await App.Current.MainPage.DisplayAlert(APIsConstant.AlertTitleForNullApiResponse, APIsConstant.AlertForNullApiResponse, APIsConstant.OK);
                 IsBusy = false;
             }
         }

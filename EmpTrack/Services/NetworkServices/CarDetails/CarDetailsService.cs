@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Services.Models;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using EmpTrack.Constants;
 
 namespace Services.NetworkServices.CarDetails
 {
@@ -19,8 +20,17 @@ namespace Services.NetworkServices.CarDetails
                 string json = await responseJson.Content.ReadAsStringAsync();
                 if (!json.Equals(null)) //only parse json if it contains data
                 {
-                    var lotresponse = JsonConvert.DeserializeObject<Services.Models.LotDetails>(json);
-                    return lotresponse;
+                    if(json.Contains("true"))
+                    {
+                        var lotresponse = JsonConvert.DeserializeObject<Services.Models.LotDetails>(json);
+                        return lotresponse;
+                    }
+                    else if(json.Contains("false"))
+                    {
+                        LotDetails lotDetail = new LotDetails();
+                        lotDetail.Status = false;
+                        return lotDetail;
+                    }
                 }
             }
             catch (Exception ex)
@@ -40,8 +50,17 @@ namespace Services.NetworkServices.CarDetails
                 string json = await responseJson.Content.ReadAsStringAsync();
                 if (!json.Equals(null)) //only parse json if it contains data
                 {
-                    var lotresponse = JsonConvert.DeserializeObject<Services.Models.LotList>(json);
-                    return lotresponse;
+                    if(json.Contains("true"))
+                    {
+                        var lotresponse = JsonConvert.DeserializeObject<Services.Models.LotList>(json);
+                        return lotresponse;
+                    }
+                    else if(json.Contains("false"))
+                    {
+                        LotList lotList = new LotList();
+                        lotList.Status = false;
+                        return lotList;
+                    }
                 }
             }
             catch (Exception ex)

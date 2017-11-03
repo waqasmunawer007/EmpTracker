@@ -95,7 +95,7 @@
                     </StackLayout>
 
                     <!--Shipment datetime-->
-                    <Label Text="Shipment Datetime From/To" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
+                    <Label Text="Pick Off" VerticalOptions="Start" HorizontalOptions="Start" TextColor="{StaticResource NormalTextColor}" FontSize="{StaticResource HeadingFontSize}"/>
                     
                     <StackLayout Orientation="Horizontal">
 

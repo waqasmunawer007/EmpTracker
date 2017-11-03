@@ -40,19 +40,18 @@ namespace EmpTrack.ViewModels.User
                 //return new Command(() =>
                 //{
                 //    Settings.DomainType = 1;
-                //    App.Current.MainPage = new NavigationPage(new Views.Auction.AuctionPageForUser2());
+                //    App.Current.MainPage = new Views.Menu.MainPage();
                 //});
                 return new Command(async () =>
                 {
-                    if(CrossConnectivity.Current.IsConnected)
+                    if (CrossConnectivity.Current.IsConnected)
                     {
                         try
                         {
-							Settings.DomainType = 1;
+                            Settings.DomainType = 1;
                             if (!String.IsNullOrEmpty(Settings.Email))
                             {
-
-                                Application.Current.MainPage = new NavigationPage(new Views.Auction.AuctionPageForUser2());
+                                Application.Current.MainPage = new Views.Menu.MainPage();
                             }
                             else if (String.IsNullOrEmpty(Settings.Email))
                             {
@@ -63,7 +62,7 @@ namespace EmpTrack.ViewModels.User
                                 {
                                     App.PCA1.Remove(user);
                                 }
-                                Application.Current.MainPage = new NavigationPage(new Views.Auction.AuctionPageForUser2());
+                                Application.Current.MainPage = new Views.Menu.MainPage();
                             }
                         }
                         catch (Exception ex)
@@ -76,7 +75,6 @@ namespace EmpTrack.ViewModels.User
                     {
                         await App.Current.MainPage.DisplayAlert("No Internet", "Please check your internet connection", "OK");
                     }
-                    
                 });
             }
         }
