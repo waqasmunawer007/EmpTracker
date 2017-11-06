@@ -25,6 +25,7 @@ namespace EmpTrack.ViewModels.LocationDetails
         {
             _Navigation = _navigation;
             lotgrouplist = new ObservableCollection<LotGroupEntity>();
+            lotgrouplist.Clear();
             lotgrouplist = lotgroupList;
         }
         public ObservableCollection<LotGroupEntity> LotGroupList

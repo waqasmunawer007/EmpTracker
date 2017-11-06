@@ -42,41 +42,41 @@ namespace EmpTrack.ViewModels.User
                 //    Settings.DomainType = 1;
                 //    App.Current.MainPage = new Views.Menu.MainPage();
                 //});
-                return new Command(async () =>
-                {
-                    if (CrossConnectivity.Current.IsConnected)
-                    {
-                        try
-                        {
-                            Settings.DomainType = 1;
-                            if (!String.IsNullOrEmpty(Settings.Email))
-                            {
-                                Application.Current.MainPage = new Views.Menu.MainPage();
-                            }
-                            else if (String.IsNullOrEmpty(Settings.Email))
-                            {
-                                AuthenticationResult ar = await App.PCA1.AcquireTokenAsync(App.Scopes, App.UiParent);
-                                Settings.UserName = ar.User.Name;
-                                Settings.Email = ar.User.DisplayableId;
-                                foreach (var user in App.PCA1.Users)
-                                {
-                                    App.PCA1.Remove(user);
-                                }
-                                Application.Current.MainPage = new Views.Menu.MainPage();
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine("Exception " + ex.Message);
+				return new Command(async () =>
+				{
+				    if (CrossConnectivity.Current.IsConnected)
+				    {
+				        try
+				        {
+				            Settings.DomainType = 1;
+				            if (!String.IsNullOrEmpty(Settings.Email))
+				            {
+				                Application.Current.MainPage = new Views.Menu.MainPage();
+				            }
+				            else if (String.IsNullOrEmpty(Settings.Email))
+				            {
+				                AuthenticationResult ar = await App.PCA1.AcquireTokenAsync(App.Scopes, App.UiParent);
+				                Settings.UserName = ar.User.Name;
+				                Settings.Email = ar.User.DisplayableId;
+				                foreach (var user in App.PCA1.Users)
+				                {
+				                    App.PCA1.Remove(user);
+				                }
+				                Application.Current.MainPage = new Views.Menu.MainPage();
+				            }
+				        }
+				        catch (Exception ex)
+				        {
+				            Debug.WriteLine("Exception " + ex.Message);
 
-                        }
-                    }
-                    else
-                    {
-                        await App.Current.MainPage.DisplayAlert("No Internet", "Please check your internet connection", "OK");
-                    }
-                });
-            }
+				        }
+				    }
+				    else
+				    {
+				        await App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
+				    }
+				});
+			}
         }
 
         public ICommand ServiceProviderCommand
@@ -113,7 +113,7 @@ namespace EmpTrack.ViewModels.User
                     }
                     else
                     {
-                        await App.Current.MainPage.DisplayAlert("No Internet", "Please check your internet connection", "OK");
+                        await App.Current.MainPage.DisplayAlert(APIsConstant.NetworkAlertTitle, APIsConstant.NetworkError, APIsConstant.OK);
                     }
                 });
             }

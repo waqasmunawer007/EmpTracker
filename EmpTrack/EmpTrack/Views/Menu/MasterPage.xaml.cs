@@ -31,6 +31,13 @@ namespace EmpTrack.Views.Menu
         private List<MasterPageItem> GetMenuForDomain1()
         {
             var masterPageItem = new List<MasterPageItem>();
+			masterPageItem.Add(new MasterPageItem
+			{
+				Title = "Auction",
+				IconSource = "Auction.png",
+				TargetType = typeof(Views.Auction.AuctionPageForUser2)
+			});
+
             masterPageItem.Add(new MasterPageItem
             {
                 Title = "My Profile",
@@ -43,12 +50,7 @@ namespace EmpTrack.Views.Menu
                 IconSource = "Policy.png",
                 TargetType = typeof(Views.PolicyMenu.PolicyMenuPage)
             });
-            masterPageItem.Add(new MasterPageItem
-            {
-                Title="Auction",
-                IconSource="Auction.png",
-                TargetType=typeof(Views.Auction.AuctionPageForUser2)
-            });
+           
             masterPageItem.Add(new MasterPageItem
             {
                 Title = "About Us",

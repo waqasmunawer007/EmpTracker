@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using EmpTrack.Views.Auction;
 
 namespace EmpTrack.Views.Menu
 {
@@ -22,7 +23,7 @@ namespace EmpTrack.Views.Menu
             Master = masterPage;
             if (Helpers.Settings.DomainType == 1)
             {
-                Detail = new NavigationPage(new MyProfile());
+                Detail = new NavigationPage(new AuctionPageForUser2());
             }
             else
             {

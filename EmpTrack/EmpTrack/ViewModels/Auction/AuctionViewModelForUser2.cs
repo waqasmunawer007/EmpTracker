@@ -122,6 +122,7 @@ namespace EmpTrack.ViewModels.Auction
         #region Fetch lotlist against buyer id
         private async void FetchLotList()
         {
+            LotGroupList.Clear();
             var cardetailservicesssss = new Services.NetworkServices.CarDetails.CarDetailsService();
             LotList lotResponse = await cardetailservicesssss.FetchLotListByBuyerID(Buyer_ID);
             // if api response is not null
